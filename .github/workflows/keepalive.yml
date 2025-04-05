@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping your Render App
-        run: curl -s https://al-map.onrender.com > /dev/null
+        run: curl -s https://al-map.onrender.com/github-ping > /dev/null
