@@ -14,7 +14,7 @@ function showToast(msg) {
   }, 3000);
 }
 
-const map = L.map("map").setView([0, 0], 16);
+const map = L.map("map");
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: "Alson Wangkhem",
@@ -31,7 +31,7 @@ if (navigator.geolocation) {
     },
     {
       enableHighAccuracy: true,
-      timeout: 2000,
+      timeout: 5000,
       maximumAge: 0,
     }
   );
@@ -46,7 +46,7 @@ if (navigator.geolocation) {
     },
     {
       enableHighAccuracy: true,
-      timeout: 2000,
+      timeout: 5000,
       maximumAge: 0,
     }
   );
@@ -59,7 +59,7 @@ let mapCentered = false;
 socket.on("receive-location", function (data) {
   const { id, latitude, longitude, username } = data;
   if (socket.id === id && !mapCentered) {
-    map.setView([latitude, longitude]);
+    map.setView([latitude, longitude], 16);
     mapCentered = true;
   }
 
@@ -71,7 +71,6 @@ socket.on("receive-location", function (data) {
       .bindPopup(username)
       .openPopup();
   }
-  console.log("markers", markers);
 });
 
 socket.on("user-joined", function (data) {
