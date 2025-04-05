@@ -29,8 +29,11 @@ io.on("connection", function(socket) {
     })
 })
 app.get("/", function(req, res) {
-    console.log("ping by github actions")
     res.render("index");
+})
+app.get("/github-ping", function (req, res) {
+    console.log("pongggg")
+    res.status(202).send("pong");
 })
 
 server.listen(3000);
